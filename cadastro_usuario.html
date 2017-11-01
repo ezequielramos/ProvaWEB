@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script>
+
+    function validateForm(){
+        if(!document.forms["cadastro_usuario"]["user"].value || !document.forms["cadastro_usuario"]["pass"].value){
+          alert("É necessário preencher os campos usuário e senha.");
+          return false;
+        }
+    };
+
+  </script>
+</head>
+<form action="cria_usuario.php" name="cadastro_usuario" method="post" onsubmit="return validateForm()" >
+  <table border='1' align='center'>
+    <tr>
+      <td colspan='2'>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Usuario: </td>
+      <td><input name='user'></td>
+    </tr>
+    <tr>
+      <td>Senha: </td>
+      <td><input type='password' name='pass'></td>
+    </tr>
+    <tr>
+      <td align='left'><input type='button' value='Voltar' onclick="window.location.href='index.php'"></td>
+      <td align='right'><input type='submit' value='Cadastrar'></td>
+    </tr>
+  </table>
+</form>
+</html>

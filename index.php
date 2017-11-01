@@ -19,7 +19,7 @@ unset($_SESSION['pass']);
     </tr>
     <tr>
       <td>Senha: </td>
-      <td><input name='pass'></td>
+      <td><input name='pass' type='password'></td>
     </tr>
     <tr>
       <td colspan='2' align='center'><input type='submit' value='Entrar'></td>

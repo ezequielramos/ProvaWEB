@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <script>
 
-    function validateForm(){
+    function validacaoForm(){
         if(!document.forms["cadastro_usuario"]["user"].value || !document.forms["cadastro_usuario"]["pass"].value){
           alert("É necessário preencher os campos usuário e senha.");
           return false;
@@ -12,7 +12,7 @@
 
   </script>
 </head>
-<form action="cria_usuario.php" name="cadastro_usuario" method="post" onsubmit="return validateForm()" >
+<form action="cria_usuario.php" name="cadastro_usuario" method="post" onsubmit="return validacaoForm()" >
   <table border='1' align='center'>
     <tr>
       <td colspan='2'>&nbsp;</td>

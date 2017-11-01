@@ -1,3 +1,12 @@
+<?php
+
+/*Sempre que for para tela de login apaga a sessão*/
+session_start();
+unset($_SESSION['user']);
+unset($_SESSION['pass']);
+
+?>
+
 <html>
 <form action="busca_clientes.php" method="post">
   <table border='1' align='center'>

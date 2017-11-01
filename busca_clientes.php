@@ -2,21 +2,36 @@
 
 include "conexao_banco.php";
 
-$user = (isset($_POST['user'])) ? true : false;
-$pass = (isset($_POST['pass'])) ? true : false;
+session_start();
 
+/*Verifica se foi enviado usuario e senha por POST, se não, verifica na sessão.*/
 if(isset($_POST['user']) && isset($_POST['pass'])){
-  echo $_POST['user'];
-  echo $_POST['pass'];
-
-  $query = "SELECT * FROM cliente";
-
-  $link = conectaBanco();
-  $result = mysqli_query($link, $query);
-
+  $user=$_POST['user'];
+  $pass=$_POST['pass'];
 }else{
-  die("Parametro codigo não enviado!");
+
+  if(isset($_SESSION['user']) && isset($_SESSION['pass'])){
+    $user=$_SESSION['user'];
+    $pass=$_SESSION['pass'];
+  }else{
+    die("Usuario não autenticado!");
+  }
 }
+
+$link = conectaBanco();
+
+$query = "SELECT * FROM usuario WHERE usuario = '$user' AND senha = '$pass'";
+$result = mysqli_query($link, $query);
+
+if(!mysqli_fetch_row($result)){
+  die("Usuario não autenticado!");
+}
+
+$_SESSION['user'] = $user;
+$_SESSION['pass'] = $pass;
+
+$query = "SELECT * FROM cliente";
+$result = mysqli_query($link, $query);
 
 ?>
 
@@ -58,6 +73,8 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
   if(!$find){
     echo "<tr><td colspan='6' align='center'><i>Nenhum registro cadastrado.</i></td></tr>";
   }
+
+  echo "<tr><td colspan='6' align='center'><input type='button' value='Sair' onclick=\"window.location.href='index.php'\"></td></tr>";
 
   ?>
 
